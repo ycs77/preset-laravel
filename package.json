@@ -1,0 +1,11 @@
+{
+  "name": "preset-laravel-yarn",
+  "license": "MIT",
+  "preset": "src/preset.js",
+  "version": "0.1.0",
+  "private": "true",
+  "devDependencies": {
+    "cross-spawn": "^7.0.3",
+    "use-preset": "^0.1"
+  }
+}
