@@ -1,7 +1,7 @@
 const { Preset } = require('use-preset')
 
 // prettier-ignore
-module.exports = Preset.make('Laravel Yarn')
+module.exports = Preset.make('Laravel Initialize')
   .option('interaction', true)
 
   .editJson('package.json')
