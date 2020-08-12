@@ -1,7 +1,7 @@
 <p align="center">
-  <h1 align="center">Laravel Yarn Initialize - Lucas</h1>
+  <h1 align="center">Laravel Initialize - Lucas</h1>
   <p align="center">
-    <a href="https://github.com/use-preset/use-preset/releases"><img alt="npx use-preset ycs77/preset-laravel-yarn" src="https://img.shields.io/badge/use--preset-laravel--yarn-blue?style=flat-square"></a>
+    <a href="https://github.com/use-preset/use-preset/releases"><img alt="npx use-preset ycs77/preset-laravel-init" src="https://img.shields.io/badge/use--preset-laravel--yarn-blue?style=flat-square"></a>
     &nbsp;
     <a href="https://www.npmjs.com/package/use-preset"><img alt="use-preset version" src="https://img.shields.io/npm/v/use-preset?color=32c854&style=flat-square&label=use-preset"></a>
   </p>
@@ -10,14 +10,14 @@
     <code>use-preset</code> is a scaffolding tool for developers. <a href="https://docs.usepreset.dev/">Read the documentation</a> for more information.
   </p>
   <br />
-  <pre align="center">npx use-preset ycs77/preset-laravel-yarn</pre>
+  <pre align="center">npx use-preset ycs77/preset-laravel-init</pre>
   <br />
   <p align="center">See more <a href="https://github.com/ycs77/presets-list">Lucas's Presets</a></p>
 <p>
 
 # About
 
-This preset initializes yarn dependencies to a fresh Laravel application.
+This preset initialize to a fresh Laravel application for Lucas.
 
 # Installation
 
@@ -26,7 +26,7 @@ This preset is intended to be installed into a fresh Laravel application. Follow
 **Then, run the following command**:
 
 ```bash
-npx use-preset ycs77/preset-laravel-yarn
+npx use-preset ycs77/preset-laravel-init
 ```
 
 # Modifications
