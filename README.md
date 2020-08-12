@@ -33,3 +33,4 @@ npx use-preset ycs77/preset-laravel-init
 
 - Removal of the `package-lock.json` file
 - Addition of `vue-template-compiler` (whether you install Vue or not, Laravel Mix needs it)
+- Modification of `.editorconfig`

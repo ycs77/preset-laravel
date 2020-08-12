@@ -20,6 +20,8 @@ module.exports = Preset.make('Laravel Yarn')
     .files('package-lock.json')
     .chain()
 
+  .copyTemplates()
+
   .installDependencies()
     .if(({ flags }) => Boolean(flags.interaction))
     .for('node')
