@@ -1,6 +1,8 @@
 const { Preset } = require('use-preset')
 const spawn = require('cross-spawn')
 
+const hasYarn = spawn.sync('yarn', ['--version']).status === 0
+
 // prettier-ignore
 module.exports = Preset.make('Laravel Yarn')
   .option('interaction', true)
@@ -15,7 +17,7 @@ module.exports = Preset.make('Laravel Yarn')
     .chain()
 
   .delete()
-    .if(() => spawn.sync('yarn', ['--version']).status === 0)
+    .if(() => hasYarn)
     .title('Delete package-lock.json')
     .files('package-lock.json')
     .chain()
@@ -27,3 +29,5 @@ module.exports = Preset.make('Laravel Yarn')
     .for('node')
     .title('Install node dependencies')
     .chain()
+
+  .run(hasYarn ? 'yarn' : 'npm', [hasYarn ? 'upgrade' : 'update'])
