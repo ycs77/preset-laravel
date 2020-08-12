@@ -1,5 +1,4 @@
 const { Preset } = require('use-preset')
-const spawn = require('cross-spawn')
 
 // prettier-ignore
 module.exports = Preset.make('Laravel Yarn')
@@ -15,7 +14,6 @@ module.exports = Preset.make('Laravel Yarn')
     .chain()
 
   .delete()
-    .if(() => spawn.sync('yarn', ['--version']).status === 0)
     .title('Delete package-lock.json')
     .files('package-lock.json')
     .chain()
