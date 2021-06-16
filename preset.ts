@@ -14,7 +14,7 @@ Preset.edit('.editorconfig')
       )
   })
   .addAfter('indent_size = 2', [
+    '',
     '[{composer,package}.json]',
     'indent_size = 4',
   ])
-    .skipLines(1)
