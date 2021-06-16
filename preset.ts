@@ -10,6 +10,11 @@ Preset.edit('.editorconfig')
     return content
       .replace(
         '[*.{yml,yaml}]',
-        '[*.{css,sass,scss,js,jsx,ts,tsx,vue,yml,yaml}]'
+        '[*.{css,sass,scss,js,jsx,json,ts,tsx,vue,yml,yaml}]'
       )
   })
+  .addAfter('indent_size = 2', [
+    '[{composer,package}.json]',
+    'indent_size = 4',
+  ])
+    .skipLines(1)
