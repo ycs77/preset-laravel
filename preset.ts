@@ -1,20 +1,104 @@
-import { color, Preset } from 'apply'
+export default definePreset({
+  name: 'ycs77/preset-laravel',
+  options: {
+    npm: false,
+    yarn: true,
+    pnpm: false,
+    timezone: 'Asia/Taipei',
+  },
+  handler: async(context) => {
+    await initializeLaravel(context.options)
+    await installDependencies(context.options)
+  },
+})
 
-Preset.setName('Laravel Initialize')
-
-Preset.extract('default').withTitle('Extracting templates...')
-
-Preset.edit('.editorconfig')
-  .withTitle(`Updating ${color.magenta('.editorconfig')}...`)
-  .update(content => {
-    return content
-      .replace(
-        '[*.{yml,yaml}]',
-        '[*.{css,sass,scss,js,jsx,json,ts,tsx,vue,yml,yaml}]'
-      )
+async function initializeLaravel(options: {
+  timezone: string
+}) {
+  await editFiles({
+    title: 'update .editorconfig',
+    files: '.editorconfig',
+    operations: [
+      {
+        type: 'update-content',
+        update: content => content.replace(
+          '[*.{yml,yaml}]',
+          '[*.{css,sass,scss,js,jsx,json,ts,tsx,vue,yml,yaml,md}]'
+        ),
+      },
+      {
+        type: 'add-line',
+        position: 'after',
+        match: /indent_size = 2/,
+        lines: [
+          '',
+          '[{composer,package}.json]',
+          'indent_size = 4',
+        ],
+      },
+    ],
   })
-  .addAfter('indent_size = 2', [
-    '',
-    '[{composer,package}.json]',
-    'indent_size = 4',
-  ])
+
+  await editFiles({
+    title: 'update timezone config',
+    files: 'config/app.php',
+    operations: [
+      {
+        type: 'update-content',
+        update: content => content.replace(
+          `'timezone' => 'UTC'`,
+          `'timezone' => '${options.timezone}'`
+        ),
+      },
+    ],
+  })
+
+  // const language = 'zh_TW'
+  // await editFiles({
+  //   title: 'update language config',
+  //   files: 'config/app.php',
+  //   operations: [
+  //     {
+  //       type: 'update-content',
+  //       update: content => content.replace(
+  //         `'locale' => 'en'`,
+  //         `'locale' => '${language}'`
+  //       ),
+  //     },
+  //     {
+  //       type: 'update-content',
+  //       update: content => content.replace(
+  //         `'faker_locale' => 'en_US'`,
+  //         `'faker_locale' => '${language}'`
+  //       ),
+  //     },
+  //   ],
+  // })
+}
+
+async function installDependencies(options: {
+  npm: boolean
+  yarn: boolean
+  pnpm: boolean
+}) {
+  const nodePackageManager = guessNodePackageManager(options)
+  await group({
+    title: `run ${nodePackageManager} install`,
+    handler: async () => {
+      await executeCommand({ command: nodePackageManager })
+    },
+  })
+}
+
+function guessNodePackageManager(options: {
+  npm: boolean
+  yarn: boolean
+  pnpm: boolean
+}) {
+  if (options.pnpm) {
+    return 'pnpm'
+  } else if (options.yarn) {
+    return 'yarn'
+  }
+  return 'npm'
+}
