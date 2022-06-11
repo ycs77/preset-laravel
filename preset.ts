@@ -15,6 +15,11 @@ export default definePreset({
 async function initializeLaravel(options: {
   timezone: string
 }) {
+  await extractTemplates({
+    title: 'extract templates',
+    from: 'default',
+  })
+
   await editFiles({
     title: 'update .editorconfig',
     files: '.editorconfig',
