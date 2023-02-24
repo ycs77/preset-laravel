@@ -6,7 +6,7 @@ export default definePreset({
     pnpm: false,
     timezone: 'Asia/Taipei',
   },
-  handler: async(context) => {
+  handler: async context => {
     await initializeLaravel(context.options)
     await installDependencies(context.options)
   },
@@ -28,7 +28,7 @@ async function initializeLaravel(options: {
         type: 'update-content',
         update: content => content.replace(
           '[*.{yml,yaml}]',
-          '[*.{css,sass,scss,js,jsx,json,ts,tsx,vue,yml,yaml,md}]'
+            '[*.{css,js,cjs,mjs,jsx,json,ts,tsx,vue,yml,yaml,md}]'
         ),
       },
       {
